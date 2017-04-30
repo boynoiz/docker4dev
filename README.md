@@ -1,4 +1,4 @@
-# Docker Web Server Stack for Laravel Framework and Web Development
+# Docker4Dev
 
 ---
 
@@ -6,7 +6,7 @@
 
 ---
 
-I made Docker4Dev for Laravel Framework and php web development on Windows 10
+Docker Web Server Stack for Laravel Framework and Web Development on Windows 10
 
 ## What's inside
 
