@@ -1,0 +1,51 @@
+#------------------------------------------------------------------------------#
+#                   OFFICIAL DEBIAN REPOS
+#------------------------------------------------------------------------------#
+
+###### Debian Main Repos
+deb http://ftp.debianclub.org/debian jessie main contrib non-free
+deb-src http://ftp.debianclub.org/debian jessie main contrib non-free
+
+deb http://ftp.debianclub.org/debian jessie-updates main contrib non-free
+deb-src http://ftp.debianclub.org/debian jessie-updates main contrib non-free
+
+deb http://ftp.debianclub.org/debian-security jessie/updates contrib non-free
+deb-src http://ftp.debianclub.org/debian-security jessie/updates contrib non-free
+
+deb http://mirror.applebred.net/debian jessie main contrib non-free
+deb-src http://mirror.applebred.net/debian jessie main contrib non-free
+
+deb http://mirror.applebred.net/debian jessie-updates main contrib non-free
+deb-src http://mirror.applebred.net/debian jessie-updates main contrib non-free
+
+deb http://mirror.applebred.net/debian-security jessie/updates contrib non-free
+deb-src http://mirror.applebred.net/debian-security jessie/updates contrib non-free
+
+deb http://mirror.kku.ac.th/debian jessie main contrib non-free
+deb-src http://mirror.kku.ac.th/debian jessie main contrib non-free
+
+deb http://mirror.kku.ac.th/debian jessie-updates main contrib non-free
+deb-src http://mirror.kku.ac.th/debian jessie-updates main contrib non-free
+
+deb http://mirror.kku.ac.th/debian-security jessie/updates main contrib non-free
+deb-src http://mirror.kku.ac.th/debian-security jessie/updates main contrib non-free
+
+deb http://mirror.kku.ac.th/debian jessie-proposed-updates main contrib non-free
+deb-src http://mirror.kku.ac.th/debian jessie-proposed-updates main contrib non-free
+
+deb http://mirror.kku.ac.th/debian jessie-backports main contrib non-free
+deb-src http://mirror.kku.ac.th/debian jessie-backports main contrib non-free
+
+deb http://opensource.nchc.org.tw/debian jessie main contrib non-free
+deb-src http://opensource.nchc.org.tw/debian jessie main contrib non-free
+
+deb http://opensource.nchc.org.tw/debian jessie-updates main contrib non-free
+deb-src http://opensource.nchc.org.tw/debian jessie-updates main contrib non-free
+
+deb http://opensource.nchc.org.tw/debian jessie-backports main contrib non-free
+deb-src http://opensource.nchc.org.tw/debian jessie-backports main contrib non-free
+
+###### Debian Update Repos
+
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb-src http://security.debian.org/ jessie/updates main contrib non-free

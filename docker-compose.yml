@@ -1,0 +1,100 @@
+version: '3'
+services:
+  docker4dev:
+    build: .
+    container_name: ${APP_NAME}-workspace
+    ports:
+      - "2222:22"
+      - "80:80"
+      - "443:443"
+    expose:
+      - "6001"
+      - "9000"
+    environment:
+      - PHP_IDE_CONFIG=serverName=PHPSTORM
+    links:
+      - database:${APP_NAME}-db
+      - memcached:${APP_NAME}-memcached
+      - mongo:${APP_NAME}-mongo
+      - redis:${APP_NAME}-redis
+      - elasticsearch:${APP_NAME}-elastic
+      - rabbitmq:${APP_NAME}-rabbitmq
+    volumes:
+      - ./webroot/:/var/www/${SITE_NAME}/
+    networks:
+      - frontend
+      - backend
+    dns:
+      - 8.8.8.8
+      - 8.4.4.4
+    tty: true
+
+  database:
+    container_name: ${APP_NAME}-db
+    image: mysql:${MYSQL_VERSION}
+    expose:
+      - 3306
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    networks:
+      - backend
+
+  memcached:
+    container_name: ${APP_NAME}-memcached
+    image: memcached:1.4-alpine
+    ports:
+      - "11211:11211"
+    command: memcached -m 1024m
+
+  mongo:
+    container_name: ${APP_NAME}-mongo
+    image: mongo
+    expose:
+      - 27017
+    ports:
+      - "27017:27017"
+    networks:
+      - backend
+
+  redis:
+    container_name: ${APP_NAME}-redis
+    image: redis:alpine
+    command: redis-server --appendonly yes
+    expose:
+      - 6379
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=null
+    networks:
+      - backend
+
+  elasticsearch:
+    container_name: ${APP_NAME}-elastic
+    image: elasticsearch:5-alpine
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - backend
+
+  rabbitmq:
+    container_name: ${APP_NAME}-rabbitmq
+    image: rabbitmq:3.6-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - backend
+
+networks:
+  frontend:
+    driver: "bridge"
+  backend:
+    driver: "bridge"
