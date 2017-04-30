@@ -57,6 +57,4 @@ That's it!
 
 ## License
 
-Copyright &copy; 2014-2016 [Kasper Kronborg Isager](http://github.com/kasperisager). Licensed under the terms of the [MIT license](LICENSE.md).
-
 Copyright &copy; 2017 [Pathompong Pechkongtong](https://github.com/boynoiz). Licensed under the terms of the [MIT license](LICENSE.md).
