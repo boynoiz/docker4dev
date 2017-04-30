@@ -30,8 +30,6 @@ Change variable in .env file
 ```
 APP_NAME=app
 SITE_NAME=yoursitename.dev
-SSH_USER_NAME=docker
-SSH_USER_PASSWORD=docker
 MYSQL_VERSION=5.7
 MYSQL_ROOT_PASSWORD=r00tp@$$w0rd
 MYSQL_DATABASE=docker4dev
@@ -48,6 +46,13 @@ $ docker-compose up
 ```
 
 After build finished then you can login to workspace container via ssh.
+
+```sh
+HOST = 127.0.0.1 
+PORT = 2222
+USER = docker
+PASSWORD = docker
+```
 
 Because we working on root permission so you just run command ```sudo passwd``` to change root password and run ``` su``` and type your root password that you changed.
 

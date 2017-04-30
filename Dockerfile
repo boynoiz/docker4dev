@@ -243,9 +243,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends --no-
 ADD conf/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Add user for ssh
-RUN adduser --quiet --disabled-password --shell /bin/bash --home /home/${SSH_USER_NAME} --gecos "Docker 4Dev" ${SSH_USER_NAME} && \
-echo "${SSH_USER_NAME}:${SSH_USER_PASSWORD}" | chpasswd &&\
-echo "${SSH_USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN adduser --quiet --disabled-password --shell /bin/bash --home /home/docker --gecos "Docker 4Dev" docker && \
+echo "docker:docker" | chpasswd &&\
+echo "docker ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Config openssd-server 
 
