@@ -49,7 +49,9 @@ $ docker-compose up
 
 After build finished then you can login to workspace container via ssh.
 
-Because we working on root permission so you just run command ```sudo passwd``` to change root password and run ```su``` and type your root password that you changed
+Because we working on root permission so you just run command ```sudo passwd``` to change root password and run ``` su``` and type your root password that you changed.
+
+Your workspace will store in ```webroot``` directory.
 
 That's it!
 
