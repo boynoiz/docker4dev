@@ -4,6 +4,11 @@
 
 FROM nginx:latest
 
+ENV PROJECT_NAME ${PROJECT_NAME}
+ENV SITE_URL ${SITE_URL}
+ENV SSH_USER_NAME ${SSH_USER_NAME}
+ENV SSH_USER_PASSWORD ${SSH_USER_PASSWORD}
+
 RUN usermod -u 1000 www-data
 
 # Copy our nginx config
@@ -26,9 +31,9 @@ chown -R www-data:www-data /var/www/ && \
 chmod a+x /var/www/
 
 ADD conf/nginx/sites-available/default.conf /etc/nginx/sites-available/default.conf
-ADD conf/nginx/sites-available/workspace.conf /etc/nginx/sites-available/${SITE_NAME}.conf
+ADD conf/nginx/sites-available/workspace.conf /etc/nginx/sites-available/${PROJECT_NAME}.conf
 RUN sed -i \
-        -e "s/yoursitename.dev/${SITE_NAME}/g" /etc/nginx/sites-available/${SITE_NAME}.conf
+        -e "s/yoursitename.dev/${SITE_URL}/g" /etc/nginx/sites-available/${PROJECT_NAME}.conf
 
 RUN ln -s /etc/nginx/sites-available/* /etc/nginx/sites-enabled/
 
@@ -162,10 +167,10 @@ RUN sed -i \
         /etc/php/7.1/fpm/pool.d/www.conf
 
 ADD conf/php-fpm/xdebug.ini /etc/php/7.1/mods-available/
-ADD conf/php-fpm/pool.d/www.conf /etc/php/7.1/fpm/pool.d/${SITE_NAME}.conf
+ADD conf/php-fpm/pool.d/www.conf /etc/php/7.1/fpm/pool.d/${PROJECT_NAME}.conf
 
 RUN sed -i \
-        -e "s/yoursitename.dev/${SITE_NAME}/g" /etc/php/7.1/fpm/pool.d/${SITE_NAME}.conf
+        -e "s/yoursitename.dev/${SITE_URL}/g" /etc/php/7.1/fpm/pool.d/${PROJECT_NAME}.conf
 
 # Add PHP MSSQL Driver Extension
 
@@ -243,9 +248,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends --no-
 ADD conf/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Add user for ssh
-RUN adduser --quiet --disabled-password --shell /bin/bash --home /home/docker --gecos "Docker 4Dev" docker && \
-echo "docker:docker" | chpasswd &&\
-echo "docker ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN adduser --quiet --disabled-password --shell /bin/bash --home /home/${SSH_USER_NAME} --gecos "Docker ToolBox" ${SSH_USER_NAME} && \
+echo "${SSH_USER_NAME}:${SSH_USER_PASSWORD}" | chpasswd &&\
+echo "${SSH_USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Config openssd-server 
 
