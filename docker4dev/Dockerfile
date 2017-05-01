@@ -4,6 +4,11 @@
 
 FROM nginx:latest
 
+ARG PROJECT_NAME
+ARG SITE_URL
+ARG SSH_USER_NAME
+ARG SSH_USER_PASSWORD
+
 ENV PROJECT_NAME ${PROJECT_NAME}
 ENV SITE_URL ${SITE_URL}
 ENV SSH_USER_NAME ${SSH_USER_NAME}
@@ -12,9 +17,6 @@ ENV SSH_USER_PASSWORD ${SSH_USER_PASSWORD}
 RUN usermod -u 1000 www-data
 
 # Copy our nginx config
-
-RUN echo "nameserver 8.8.8.8" >> /etc/resolv.conf && \
-echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 
 RUN rm -Rf /etc/nginx/nginx.conf
 ADD conf/nginx/nginx.conf /etc/nginx/nginx.conf
