@@ -1,5 +1,7 @@
 # Docker4Dev
 
+This project are still under experimental. There's a problem about pass through env to Dockerfile and I working on it.
+
 ---
 
 > Inspiration from [Dockerized by kasperisager](https://github.com/kasperisager/php-dockerized) PHP development stack: Nginx, MariaDB, MongoDB, PHP-FPM, HHVM, Memcached, Redis, Elasticsearch and RabbitMQ
