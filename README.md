@@ -65,7 +65,7 @@ PASSWORD = docker
 
 Because we working on root permission so you just run command ```sudo passwd``` to change root password and run ``` su``` and type your root password that you changed.
 
-Your workspace is ```webroot``` on Windows host and ``` /var/www/APP_PROJECT_NAME ``` on Docker container.
+Your workspace is ```webroot``` on Windows host and ``` /var/www/APP_SITE_URL ``` on Docker container.
 
 That's it!
 

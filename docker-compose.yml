@@ -1,8 +1,17 @@
 version: '3'
 services:
   docker4dev:
-    build: .
+    build:
+      context: .
+      args:
+        - PROJECT_NAME=${APP_PROJECT_NAME}
+        - SITE_URL=${APP_SITE_URL}
+        - SSH_USER_NAME=${APP_SSH_USER_NAME}
+        - SSH_USER_PASSWORD=${APP_SSH_USER_PASSWORD}
+      dockerfile: Dockerfile
     container_name: ${APP_NAME}-workspace
+    volumes:
+      - ./webroot/:/var/www/${APP_SITE_URL}/
     ports:
       - "2222:22"
       - "80:80"
@@ -11,16 +20,14 @@ services:
       - "6001"
       - "9000"
     environment:
-      - PHP_IDE_CONFIG=serverName=PHPSTORM
+      - PHP_IDE_CONFIG=serverName=${APP_PROJECT_NAME}
     links:
-      - database:${APP_NAME}-db
-      - memcached:${APP_NAME}-memcached
-      - mongo:${APP_NAME}-mongo
-      - redis:${APP_NAME}-redis
-      - elasticsearch:${APP_NAME}-elastic
-      - rabbitmq:${APP_NAME}-rabbitmq
-    volumes:
-      - ./webroot/:/var/www/${SITE_NAME}/
+      - database:${APP_PROJECT_NAME}-db
+      - memcached:${APP_PROJECT_NAME}-memcached
+      - mongo:${APP_PROJECT_NAME}-mongo
+      - redis:${APP_PROJECT_NAME}-redis
+      - elasticsearch:${APP_PROJECT_NAME}-elastic
+      - rabbitmq:${APP_PROJECT_NAME}-rabbitmq
     networks:
       - frontend
       - backend
@@ -30,29 +37,29 @@ services:
     tty: true
 
   database:
-    container_name: ${APP_NAME}-db
-    image: mysql:${MYSQL_VERSION}
+    container_name: ${APP_PROJECT_NAME}-db
+    image: mysql:${APP_MYSQL_VERSION}
     expose:
       - 3306
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${APP_MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${APP_MYSQL_DATABASE}
+      - MYSQL_USER=${APP_MYSQL_USER}
+      - MYSQL_PASSWORD=${APP_MYSQL_PASSWORD}
     networks:
       - backend
 
   memcached:
-    container_name: ${APP_NAME}-memcached
+    container_name: ${APP_PROJECT_NAME}-memcached
     image: memcached:1.4-alpine
     ports:
       - "11211:11211"
     command: memcached -m 1024m
 
   mongo:
-    container_name: ${APP_NAME}-mongo
+    container_name: ${APP_PROJECT_NAME}-mongo
     image: mongo
     expose:
       - 27017
@@ -62,7 +69,7 @@ services:
       - backend
 
   redis:
-    container_name: ${APP_NAME}-redis
+    container_name: ${APP_PROJECT_NAME}-redis
     image: redis:alpine
     command: redis-server --appendonly yes
     expose:
@@ -76,7 +83,7 @@ services:
       - backend
 
   elasticsearch:
-    container_name: ${APP_NAME}-elastic
+    container_name: ${APP_PROJECT_NAME}-elastic
     image: elasticsearch:5-alpine
     ports:
       - "9200:9200"
@@ -85,7 +92,7 @@ services:
       - backend
 
   rabbitmq:
-    container_name: ${APP_NAME}-rabbitmq
+    container_name: ${APP_PROJECT_NAME}-rabbitmq
     image: rabbitmq:3.6-alpine
     ports:
       - "15672:15672"
