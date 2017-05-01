@@ -56,6 +56,11 @@ $ docker-compose up
 
 After build finished then you can login to workspace container via ssh.
 
+```sh
+HOST = 127.0.0.1 
+PORT = 2222
+```
+
 Because we working on root permission so you just run command ```sudo passwd``` to change root password and run ``` su``` and type your root password that you changed.
 
 Your workspace is ```webroot``` on Windows host and ``` /var/www/APP_SITE_URL ``` on Docker container.
