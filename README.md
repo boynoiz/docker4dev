@@ -11,9 +11,12 @@ Docker Web Server Stack for Laravel Framework and Web Development on Windows 10
 ## What's inside
 
 * [Nginx](http://nginx.org/)
-* [MySQL 5.7](http://www.mysql.org/)
+* [MySQL](http://www.mysql.org/)
 * [MongoDB](http://www.mongodb.org/)
 * [PHP-FPM 7.1](http://php-fpm.org/)
+
+> apcu bcmath bz2 cgi cli common curl fpm gmagick gd geoip intl igbinary imagick json mbstring mcrypt memcached mongodb msgpack mysql odbc opcache pear pspell readline recode redis sqlite3 sqlsrv tidy xml uuid xdebug yaml zip
+
 * [Memcached](http://memcached.org/)
 * [Redis](http://redis.io/)
 * [Elasticsearch](http://www.elasticsearch.org/)
@@ -28,13 +31,17 @@ Docker Web Server Stack for Laravel Framework and Web Development on Windows 10
 
 Change variable in .env file
 ```
-APP_NAME=app
-SITE_NAME=yoursitename.dev
-MYSQL_VERSION=5.7
-MYSQL_ROOT_PASSWORD=r00tp@$$w0rd
-MYSQL_DATABASE=docker4dev
-MYSQL_USER=docker4dev
-MYSQL_PASSWORD=docker4dev
+APP_PROJECT_NAME=app
+APP_SITE_URL=yoursitename.dev
+
+APP_SSH_USER_NAME=docker
+APP_SSH_USER_PASSWORD=docker
+
+APP_MYSQL_VERSION=5.7
+APP_MYSQL_ROOT_PASSWORD=r00tp@$$w0rd
+APP_MYSQL_DATABASE=docker4dev
+APP_MYSQL_USER=docker4dev
+APP_MYSQL_PASSWORD=docker4dev
 ```
 
 ## Running
