@@ -13,7 +13,7 @@ Docker Web Server Stack for Laravel Framework and Web Development on Windows 10
 * [Nginx](http://nginx.org/)
 * [MySQL](http://www.mysql.org/)
 * [MongoDB](http://www.mongodb.org/)
-* [PHP-FPM 7.1](http://php-fpm.org/)
+* [PHP 7.1](http://php-fpm.org/)
 
 > apcu bcmath bz2 cgi cli common curl fpm gmagick gd geoip intl igbinary imagick json mbstring mcrypt memcached mongodb msgpack mysql odbc opcache pear pspell readline recode redis sqlite3 sqlsrv tidy xml uuid xdebug yaml zip
 
