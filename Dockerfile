@@ -258,14 +258,6 @@ echo "${SSH_USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 RUN mkdir -p /var/run/sshd
 
-# Add Bash-it
-RUN git clone --depth=1 https://github.com/Bash-it/bash-it.git /root/.bash_it && ~/.bash_it/install.sh --silent
-RUN sed -i \
-  -e "s/export BASH_IT_THEME='bobby'/export BASH_IT_THEME='powerline'/g" \
-  /root/.bashrc
-
-
-
 ################################################################################
 # Volumes
 ################################################################################
